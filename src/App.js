@@ -10,8 +10,6 @@ export default function App() {
   const [lName, setLastName] = useState("");
   const [out, setOut] = useState([]);
 
-  const HTTP_TOKEN = process.env.REACT_APP_HTTP_TOKEN;
-
   async function submit(e) {
     e.preventDefault();
     setLoading(true);
@@ -42,7 +40,8 @@ export default function App() {
         },
         headers: {
           Accept: "application/json, text/plain, */*",
-          Http_token: HTTP_TOKEN,
+          Http_token:
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo3Mjg5OSwiZXhlY3V0aXZlX2lkIjo2MzQxOSwibG9naW5fbW9kZSI6ImFuZHJvaWQiLCJkYl9tb2RlIjoiTElWRSIsInJvbGVfaWQiOjUsImFwcF9pZCI6MiwiY2xpZW50X2lkIjo3NiwiZWxlY3Rpb25faWQiOjkzLCJzdXBlcl9hZG1pbl9pZCI6NDE3LCJhZGRlZGRhdGUiOiIyMDI2LTAxLTA5IDE2OjM1OjU5LjQwMTUxMyJ9.Ar1wN3YtJKp0+Y/iehGR3MFhtNBJZ12ICEXS4F+i7n4=",
           Origin: "https://digibitsearch.com",
           "sec-fetch-site": "same-site",
           Referer: "https://digibitsearch.com/pwa-umc/voter-search",
