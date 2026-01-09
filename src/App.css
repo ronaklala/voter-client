@@ -1,0 +1,61 @@
+.wrap {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 16px;
+  font-family: system-ui, Arial, sans-serif;
+}
+.form {
+  display: grid;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.voter {
+  padding: 15px;
+  background: #f6f8fa;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.5);
+}
+.row {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: 10px;
+  align-items: center;
+}
+input {
+  padding: 10px;
+}
+.btn {
+  width: 140px;
+  padding: 10px 14px;
+  cursor: pointer;
+  border-radius: 6px;
+  border: none;
+  background-color: #2563eb; /* normal */
+  color: #fff;
+  transition: background-color 0.2s ease, opacity 0.2s ease;
+}
+
+/* Disabled via attribute OR class */
+.btn:disabled,
+.btn.disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+  background-color: #9ca3af; /* gray */
+  color: #f3f4f6;
+  pointer-events: none;
+}
+
+/* Optional: prevent hover effects when disabled */
+.btn:disabled:hover,
+.btn.disabled:hover {
+  background-color: #9ca3af;
+}
+.out {
+  background: #f6f8fa;
+  padding: 12px;
+  border-radius: 8px;
+  overflow: auto;
+  min-height: 120px;
+}

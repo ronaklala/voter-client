@@ -1,0 +1,148 @@
+import React, { useState } from "react";
+import "./App.css";
+import { PuffLoader } from "react-spinners";
+
+export default function App() {
+  const [idcardno, setIdcardno] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [fName, setFirstName] = useState("");
+  const [mName, setMiddleName] = useState("");
+  const [lName, setLastName] = useState("");
+  const [out, setOut] = useState([]);
+
+  async function submit(e) {
+    e.preventDefault();
+    setLoading(true);
+    setOut("");
+
+    if (fName === "" && mName === "" && lName === "" && idcardno === "") {
+      alert("Please enter atleast one field");
+      setOut([]);
+      setLoading(false);
+      return;
+    }
+
+    try {
+      const payload = {
+        form: {
+          fname: fName,
+          mname: mName,
+          lname: lName,
+          gender: "",
+          age: "",
+          mobile: "",
+          idcardno: idcardno,
+          acnos: "140,142,141",
+          panel_nos: "",
+          executive_id: "63419",
+          recordPerPage: "50",
+          pageNo: "1",
+        },
+        headers: {
+          Accept: "application/json, text/plain, */*",
+          Http_token: process.env.http_token,
+          Origin: "https://digibitsearch.com",
+          "sec-fetch-site": "same-site",
+          Referer: "https://digibitsearch.com/pwa-umc/voter-search",
+        },
+      };
+
+      const res = await fetch("https://voters-api.vercel.app/proxy/mhvoter", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      try {
+        const response = await res.json();
+        setOut(response.voters);
+      } catch (err) {
+        setOut([]);
+      }
+    } catch (err) {
+      setOut([]);
+      console.log(err);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  return (
+    <div className="wrap">
+      <h2>Shaka Search</h2>
+
+      <form onSubmit={submit} className="form">
+        <label className="row">
+          <span>ID Card</span>
+          <input
+            value={idcardno}
+            onChange={(e) => setIdcardno(e.target.value)}
+            placeholder="Enter idcardno (e.g. YDE6209670)"
+          />
+        </label>
+
+        <label className="row">
+          <span>First Name</span>
+          <input
+            value={fName}
+            onChange={(e) => setFirstName(e.target.value)}
+            placeholder="Enter First Name Here"
+          />
+        </label>
+
+        <label className="row">
+          <span>Middle Name</span>
+          <input
+            value={mName}
+            onChange={(e) => setMiddleName(e.target.value)}
+            placeholder="Enter Middle Name here"
+          />
+        </label>
+
+        <label className="row">
+          <span>Last Name</span>
+          <input
+            value={lName}
+            onChange={(e) => setLastName(e.target.value)}
+            placeholder="Enter Last Name here"
+          />
+        </label>
+
+        <button className="btn" disabled={loading}>
+          Search
+        </button>
+      </form>
+
+      {loading && (
+        <center>
+          <div className="loader">
+            <PuffLoader color="#000000" loading={loading} size={150} />
+          </div>
+        </center>
+      )}
+
+      {out.length > 0 &&
+        out.map((voter, i) => (
+          <section key={i}>
+            <h3>Voters Found</h3>
+            <div className="voter">
+              <p>
+                <b>Name:</b> {voter.fullname} {voter.mname} {voter.lname}
+              </p>
+              <p>
+                <b>Booth:</b> {voter.boothname}
+              </p>
+
+              <p>
+                <b>Kendra:</b> {voter.kendra_name}
+              </p>
+
+              <p>
+                <b>Kendra in Marathi:</b> {voter.kendra_name_mar}
+              </p>
+            </div>
+          </section>
+        ))}
+    </div>
+  );
+}
