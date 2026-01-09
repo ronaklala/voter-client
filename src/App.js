@@ -40,7 +40,7 @@ export default function App() {
         },
         headers: {
           Accept: "application/json, text/plain, */*",
-          Http_token: process.env.http_token,
+          Http_token: process.env.REACT_APP_http_token,
           Origin: "https://digibitsearch.com",
           "sec-fetch-site": "same-site",
           Referer: "https://digibitsearch.com/pwa-umc/voter-search",
