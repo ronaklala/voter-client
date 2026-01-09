@@ -73,6 +73,7 @@ export default function App() {
       <img
         className="header_img"
         src="https://res.cloudinary.com/ronaklala-games/image/upload/v1767966952/52aa4c2a-c89f-4129-8903-57e857dd3364_oige4u.jpg"
+        alt="Header_banner"
       />
 
       <form onSubmit={submit} className="form">
@@ -130,7 +131,10 @@ export default function App() {
           <section key={i}>
             <h3>Voter {i + 1}</h3>
             <div className="voter">
-              <img src="https://res.cloudinary.com/ronaklala-games/image/upload/v1767966952/b4089d3a-4c1f-4c7f-b626-9b6684e1892d_qkmdwt.jpg" />
+              <img
+                alt="voter_banner"
+                src="https://res.cloudinary.com/ronaklala-games/image/upload/v1767966952/b4089d3a-4c1f-4c7f-b626-9b6684e1892d_qkmdwt.jpg"
+              />
               <p>
                 <b>Name:</b> {voter.fullname} {voter.mname} {voter.lname}
               </p>
