@@ -10,6 +10,8 @@ export default function App() {
   const [lName, setLastName] = useState("");
   const [out, setOut] = useState([]);
 
+  const HTTP_TOKEN = process.env.REACT_APP_HTTP_TOKEN;
+
   async function submit(e) {
     e.preventDefault();
     setLoading(true);
@@ -40,7 +42,7 @@ export default function App() {
         },
         headers: {
           Accept: "application/json, text/plain, */*",
-          Http_token: process.env.REACT_APP_http_token,
+          Http_token: HTTP_TOKEN,
           Origin: "https://digibitsearch.com",
           "sec-fetch-site": "same-site",
           Referer: "https://digibitsearch.com/pwa-umc/voter-search",
