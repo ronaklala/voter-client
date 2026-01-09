@@ -33,7 +33,7 @@ export default function App() {
           mobile: "",
           idcardno: idcardno,
           acnos: "140,142,141",
-          panel_nos: "",
+          panel_nos: "17",
           executive_id: "63419",
           recordPerPage: "50",
           pageNo: "1",
@@ -69,7 +69,10 @@ export default function App() {
 
   return (
     <div className="wrap">
-      <h2>Shaka Search</h2>
+      <img
+        className="header_img"
+        src="https://res.cloudinary.com/ronaklala-games/image/upload/v1767966952/52aa4c2a-c89f-4129-8903-57e857dd3364_oige4u.jpg"
+      />
 
       <form onSubmit={submit} className="form">
         <label className="row">
@@ -86,7 +89,7 @@ export default function App() {
           <input
             value={fName}
             onChange={(e) => setFirstName(e.target.value)}
-            placeholder="Enter First Name Here"
+            placeholder="नाव / First Name"
           />
         </label>
 
@@ -95,7 +98,7 @@ export default function App() {
           <input
             value={mName}
             onChange={(e) => setMiddleName(e.target.value)}
-            placeholder="Enter Middle Name here"
+            placeholder="मधले नाव / Middle Name"
           />
         </label>
 
@@ -104,7 +107,7 @@ export default function App() {
           <input
             value={lName}
             onChange={(e) => setLastName(e.target.value)}
-            placeholder="Enter Last Name here"
+            placeholder="आडनाव / Last Name"
           />
         </label>
 
@@ -124,8 +127,9 @@ export default function App() {
       {out.length > 0 &&
         out.map((voter, i) => (
           <section key={i}>
-            <h3>Voters Found</h3>
+            <h3>Voter {i + 1}</h3>
             <div className="voter">
+              <img src="https://res.cloudinary.com/ronaklala-games/image/upload/v1767966952/b4089d3a-4c1f-4c7f-b626-9b6684e1892d_qkmdwt.jpg" />
               <p>
                 <b>Name:</b> {voter.fullname} {voter.mname} {voter.lname}
               </p>

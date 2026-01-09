@@ -1,5 +1,5 @@
 .wrap {
-  max-width: 780px;
+  max-width: 750px;
   margin: 0 auto;
   padding: 16px;
   font-family: system-ui, Arial, sans-serif;
@@ -16,7 +16,17 @@
   border-radius: 8px;
   margin-bottom: 10px;
   box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.5);
+  height: auto;
+  max-width: 250px;
 }
+
+.header_img {
+  max-width: 750px;
+}
+.flex-row {
+  display: flex;
+}
+
 .row {
   display: grid;
   grid-template-columns: 140px 1fr;
@@ -35,6 +45,11 @@ input {
   background-color: #2563eb; /* normal */
   color: #fff;
   transition: background-color 0.2s ease, opacity 0.2s ease;
+}
+
+.voter > img {
+  max-width: 100%;
+  object-fit: cover;
 }
 
 /* Disabled via attribute OR class */
