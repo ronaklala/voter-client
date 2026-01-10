@@ -143,12 +143,13 @@ export default function App() {
       setMiddleName("");
       const payload = {
         form: {
-          fname: fName,
+          ...(!lName.trim() && !mName.trim()
+            ? { advance_search: fName }
+            : { fname: fName }),
           mname: mName,
           ...(!fName.trim() && !mName.trim()
             ? { advance_search: lName }
             : { lname: lName }),
-
           gender: "",
           age: "",
           mobile: "",
@@ -266,7 +267,7 @@ export default function App() {
         {loading && (
           <center>
             <section className="full-page">
-              <div className=" loader vertical">
+              <div className="loader vertical">
                 <Lottie animationData={bowAnimation} loop={true} />
               </div>
             </section>

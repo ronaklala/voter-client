@@ -30,6 +30,10 @@ b {
   font-weight: 700;
 }
 
+.loader {
+  max-width: 500px;
+}
+
 .loader > span {
   overflow: hidden;
 }
