@@ -145,7 +145,7 @@ export default function App() {
         form: {
           fname: fName,
           mname: mName,
-          ...(!fName.trim() && !lName.trim()
+          ...(!fName.trim() && !mName.trim()
             ? { advance_search: lName }
             : { lname: lName }),
 
@@ -169,12 +169,6 @@ export default function App() {
           Referer: "https://digibitsearch.com/pwa-umc/voter-search",
         },
       };
-
-      if (!fName.trim() && !mName.trim()) {
-        form.advance_search = lName;
-      } else {
-        form.lname = lName;
-      }
 
       const res = await fetch("https://voters-api.vercel.app/proxy/mhvoter", {
         method: "POST",
