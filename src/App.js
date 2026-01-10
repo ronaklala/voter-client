@@ -145,7 +145,6 @@ export default function App() {
         form: {
           fname: fName,
           mname: mName,
-          advance_search: lName,
           gender: "",
           age: "",
           mobile: "",
@@ -156,6 +155,7 @@ export default function App() {
           recordPerPage: "50",
           pageNo: "1",
         },
+
         headers: {
           Accept: "application/json, text/plain, */*",
           Http_token:
@@ -165,6 +165,12 @@ export default function App() {
           Referer: "https://digibitsearch.com/pwa-umc/voter-search",
         },
       };
+
+      if (!fName.trim() && !mName.trim()) {
+        form.advance_search = lName;
+      } else {
+        form.lname = lName;
+      }
 
       const res = await fetch("https://voters-api.vercel.app/proxy/mhvoter", {
         method: "POST",
