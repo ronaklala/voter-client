@@ -145,6 +145,10 @@ export default function App() {
         form: {
           fname: fName,
           mname: mName,
+          ...(!fName.trim() && !lName.trim()
+            ? { advance_search: lName }
+            : { lname: lName }),
+
           gender: "",
           age: "",
           mobile: "",
