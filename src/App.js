@@ -208,7 +208,7 @@ export default function App() {
             <div className="count_box">8</div>
 
             <a
-              href="https://api.whatsapp.com/send?text=https://voterconnect-17.vercel.app/"
+              href="https://api.whatsapp.com/send?text=Hello%20%F0%9F%99%8F%F0%9F%8F%BB%0A%0ATo%20search%20for%20your%20name%20and%20polling%20station%20in%20the%20voter%20list%2C%20click%20on%20the%20link%20below%20and%20follow%20the%20given%20process.%0A%0Ahttps%3A%2F%2Fpanel17.in%0A%0AHow%20to%20Find%20Your%20Polling%20Station%20and%20Serial%20Number%3A%0AType%20the%20first%202%20to%203%20letters%20of%20your%20first%20name.%0AType%20the%20first%202%20to%203%20letters%20of%20your%20middle%20name.%0AType%20the%20first%202%20to%203%20letters%20of%20your%20last%20name.%0ADownload%20your%20voter%20slip.%0A%0AThank%20you%0A%E0%A4%85%20-%20%E0%A4%A8%E0%A4%BF%E0%A4%B2%E0%A5%81%20%E0%A4%9A%E0%A4%BE%E0%A4%82%E0%A4%A6%E0%A4%B5%E0%A4%A3%E0%A5%80%0A%E0%A4%AA%E0%A5%8D%E0%A4%B0%E0%A4%AD%E0%A4%BE%E0%A4%97-%20%E0%A5%A7%E0%A5%AD"
               target="_blank"
               rel="noreferrer"
             >
