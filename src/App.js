@@ -244,19 +244,19 @@ export default function App() {
           <input
             value={fName}
             onChange={(e) => setFirstName(e.target.value)}
-            placeholder="नाव / First Name"
+            placeholder="पहिले नाव [पहिले २ अक्षरे] / First Name [First 2 letters]"
           />
 
           <input
             value={mName}
             onChange={(e) => setMiddleName(e.target.value)}
-            placeholder="मधले नाव / Middle Name"
+            placeholder="मधले नाव [पहिले २ अक्षरे] / Middle Name [First 2 letters]"
           />
 
           <input
             value={lName}
             onChange={(e) => setLastName(e.target.value)}
-            placeholder="आडनाव / Last Name"
+            placeholder="आडनाव [पहिली २ अक्षरे] / Last Name [First 2 letters]"
           />
 
           <button className="btn" disabled={loading}>
