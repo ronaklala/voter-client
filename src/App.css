@@ -8,6 +8,24 @@
   overflow-x: hidden;
 }
 
+.full-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  width: 100vw;
+  background: rgba(246, 248, 250, 0.5);
+  z-index: 999;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.vertical {
+  transform: rotate(270deg);
+}
+
 b {
   font-weight: 700;
 }

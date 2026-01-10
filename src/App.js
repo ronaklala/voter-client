@@ -3,6 +3,8 @@ import "./App.css";
 import WhatsAppSVG from "./whatsapp-svgrepo-com.svg";
 import DownloadSVG from "./download-minimalistic-svgrepo-com.svg";
 import html2canvas from "html2canvas";
+import Lottie from "lottie-react";
+import bowAnimation from "./bow.json";
 
 export default function App() {
   const [idcardno, setIdcardno] = useState("");
@@ -209,19 +211,19 @@ export default function App() {
           <input
             value={fName}
             onChange={(e) => setFirstName(e.target.value)}
-            placeholder="नाव / First Name"
+            placeholder="नाव [पहिली २ अक्षरेच] / First Name [First 2 Letters itself]"
           />
 
           <input
             value={mName}
             onChange={(e) => setMiddleName(e.target.value)}
-            placeholder="मधले नाव / Middle Name"
+            placeholder="मधले नाव [पहिली २ अक्षरेच] / Middle Name [First 2 Letters itself]"
           />
 
           <input
             value={lName}
             onChange={(e) => setLastName(e.target.value)}
-            placeholder="आडनाव / Last Name"
+            placeholder="आडनाव [पहिली २ अक्षरेच] / Last Name [First 2 Letters itself]"
           />
 
           <button className="btn" disabled={loading}>
@@ -231,14 +233,11 @@ export default function App() {
 
         {loading && (
           <center>
-            <div className="loader">
-              <video autoPlay={true} loop={true} controls={false}>
-                <source
-                  src="https://res.cloudinary.com/ronaklala-games/video/upload/v1767974760/Untitled_design_f3syli.mp4"
-                  type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'
-                ></source>
-              </video>
-            </div>
+            <section className="full-page">
+              <div className=" loader vertical">
+                <Lottie animationData={bowAnimation} loop={true} />
+              </div>
+            </section>
           </center>
         )}
 
