@@ -14,6 +14,29 @@ export default function App() {
   const [lName, setLastName] = useState("");
   const [out, setOut] = useState([]);
   const [dataFetched, setDataFetched] = useState(false);
+  const [serch, setSearch] = useState("");
+
+  const filteredOut = Array.isArray(out)
+    ? out.filter((v) => {
+        // 🔹 if search box is empty → show all results
+        if (!serch.trim()) return true;
+
+        const q = serch.toLowerCase();
+
+        const first = (v.fullname || "").toLowerCase();
+        const middle = (v.mname || "").toLowerCase();
+        const last = (v.lname || "").toLowerCase();
+
+        const combined = `${first} ${middle} ${last}`;
+
+        return (
+          first.includes(q) ||
+          middle.includes(q) ||
+          last.includes(q) ||
+          combined.includes(q)
+        );
+      })
+    : [];
 
   const downloadCard = async (e, filename = "voter.png") => {
     const originalCard = e.currentTarget
@@ -113,6 +136,11 @@ export default function App() {
     }
 
     try {
+      setSearch("");
+      setLastName("");
+      setFirstName("");
+      setIdcardno("");
+      setMiddleName("");
       const payload = {
         form: {
           fname: fName,
@@ -203,7 +231,7 @@ export default function App() {
           <input
             value={idcardno}
             onChange={(e) => setIdcardno(e.target.value)}
-            placeholder="Enter ID Card No (e.g. YDE6209670)"
+            placeholder="Enter Voter ID Card No (e.g. YDE6209670)"
           />
 
           <center>OR</center>
@@ -211,19 +239,19 @@ export default function App() {
           <input
             value={fName}
             onChange={(e) => setFirstName(e.target.value)}
-            placeholder="नाव [पहिली २ अक्षरेच] / First Name [First 2 Letters itself]"
+            placeholder="नाव / First Name"
           />
 
           <input
             value={mName}
             onChange={(e) => setMiddleName(e.target.value)}
-            placeholder="मधले नाव [पहिली २ अक्षरेच] / Middle Name [First 2 Letters itself]"
+            placeholder="मधले नाव / Middle Name"
           />
 
           <input
             value={lName}
             onChange={(e) => setLastName(e.target.value)}
-            placeholder="आडनाव [पहिली २ अक्षरेच] / Last Name [First 2 Letters itself]"
+            placeholder="आडनाव / Last Name"
           />
 
           <button className="btn" disabled={loading}>
@@ -250,50 +278,64 @@ export default function App() {
             <h2>No Such Voter Found in Ward 17.</h2>
           </center>
         )}
-
+        <br />
+        <br />
         <div className="voters">
-          {out.length > 0 &&
-            out.map((voter, i) => (
-              <section key={i} style={{ padding: "15px" }}>
-                <br />
-                <div className="voter">
-                  <img
-                    alt="voter_banner"
-                    style={{ display: "none" }}
-                    src="https://res.cloudinary.com/ronaklala-games/image/upload/v1767966952/52aa4c2a-c89f-4129-8903-57e857dd3364_oige4u.jpg"
-                  />
-                  <h3>
-                    <b>
-                      {voter.fullname} {voter.mname} {voter.lname}
-                    </b>
-                  </h3>
-                  <br />
-                  <p>
-                    <b>Booth:- </b> {voter.boothname}
-                  </p>
-                  <br />
-                  <p>
-                    <b>Kendra:- </b> {voter.kendra_name}
-                  </p>
-                  <br />
-                  <p>
-                    <b>Kendra in Marathi:- </b> {voter.kendra_name_mar}
-                  </p>
-                </div>
-                <button
-                  type="button"
-                  className="btn"
-                  onClick={(e) =>
-                    downloadCard(
-                      e,
-                      `voter-${voter.idcard || voter.epic_no || i + 1}.png`
-                    )
-                  }
-                >
-                  <img alt="download_svg" src={DownloadSVG} /> Download
-                </button>
-              </section>
-            ))}
+          {out.length > 0 && (
+            <input
+              value={serch}
+              onChange={(e) => setSearch(e.target.value)}
+              placeholder="Search by first / middle / last name..."
+            />
+          )}
+          {filteredOut.length > 0 &&
+            filteredOut.map(
+              (voter, i) =>
+                voter.boothname !== "" &&
+                voter.kendra_name !== "" &&
+                voter.kendra_name_mar !== "" && (
+                  <section key={i} style={{ padding: "15px" }}>
+                    <br />
+                    <div className="voter">
+                      <img
+                        alt="voter_banner"
+                        style={{ display: "none" }}
+                        src="https://res.cloudinary.com/ronaklala-games/image/upload/v1767966952/52aa4c2a-c89f-4129-8903-57e857dd3364_oige4u.jpg"
+                      />
+                      <h3>
+                        <b>
+                          {voter.fullname} {voter.mname} {voter.lname} -{" "}
+                          {voter.idcard_no}
+                        </b>
+                      </h3>
+                      <br />
+                      <p>
+                        <b>Booth:- </b> {voter.boothname}
+                      </p>
+                      <br />
+                      <p>
+                        <b>Kendra:- </b> {voter.kendra_name}
+                      </p>
+                      <br />
+                      <p>
+                        <b>Kendra in Marathi:- </b> {voter.kendra_name_mar}
+                      </p>
+                    </div>
+                    <button
+                      type="button"
+                      className="btn"
+                      onClick={(e) =>
+                        downloadCard(
+                          e,
+                          `voter-${voter.idcard || voter.epic_no || i + 1}.png`
+                        )
+                      }
+                    >
+                      <img alt="download_svg" src={DownloadSVG} /> Download
+                    </button>
+                  </section>
+                )
+            )}
         </div>
       </div>
       <div className="footer">© 2026 - Made By Ronak Ashok lala</div>
