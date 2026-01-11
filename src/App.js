@@ -244,19 +244,19 @@ export default function App() {
           <input
             value={fName}
             onChange={(e) => setFirstName(e.target.value)}
-            placeholder="पहिले नाव [पहिले २ अक्षरे] / First Name [First 2 letters]"
+            placeholder="पहिले नाव [पहिले २ / ३ अक्षरे] / First Name [First 2 / 3 letters]"
           />
 
           <input
             value={mName}
             onChange={(e) => setMiddleName(e.target.value)}
-            placeholder="मधले नाव [पहिले २ अक्षरे] / Middle Name [First 2 letters]"
+            placeholder="मधले नाव [पहिले २ / ३ अक्षरे] / Middle Name [First 2 / 3 letters]"
           />
 
           <input
             value={lName}
             onChange={(e) => setLastName(e.target.value)}
-            placeholder="आडनाव [पहिली २ अक्षरे] / Last Name [First 2 letters]"
+            placeholder="आडनाव [पहिली २ / ३ अक्षरे] / Last Name [First 2 / 3 letters]"
           />
 
           <button className="btn" disabled={loading}>
@@ -343,7 +343,9 @@ export default function App() {
             )}
         </div>
       </div>
-      <div className="footer">© 2026 - Made By Ronak Ashok lala</div>
+      <div className="footer">
+        © 2026 - Made By <a href="wa.me/917218896568">Ronak Ashok lala</a>
+      </div>
     </React.Fragment>
   );
 }
