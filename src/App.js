@@ -344,7 +344,8 @@ export default function App() {
         </div>
       </div>
       <div className="footer">
-        © 2026 - Made By <a href="wa.me/917218896568">Ronak Ashok lala</a>
+        © 2026 - Made By{" "}
+        <a href="https://wa.me/917218896568">Ronak Ashok lala</a>
       </div>
     </React.Fragment>
   );
